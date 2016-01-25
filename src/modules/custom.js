@@ -45,7 +45,7 @@ goog.scope(function () {
       cssText += (cssText ? '\n' : '') + rawStyles[i];
     }
     if (cssText) {
-      this.domHelper_.insertInto(this.domHelper_.createStyle(cssText));
+      this.domHelper_.insertInto('head', this.domHelper_.createStyle(cssText));
     }
 
     var fonts = [];
