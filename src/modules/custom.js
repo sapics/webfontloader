@@ -35,9 +35,17 @@ goog.scope(function () {
     var urls = this.configuration_['urls'] || [];
     var familiesConfiguration = this.configuration_['families'] || [];
     var fontTestStrings = this.configuration_['testStrings'] || {};
+    var rawStyles = this.configuration_['rawStyles'] || [];
+    var cssText = '';
     var waiter = new StyleSheetWaiter();
     for (i = 0, len = urls.length; i < len; i++) {
       this.domHelper_.loadStylesheet(urls[i], waiter.startWaitingLoad());
+    }
+    for (i = 0, len = rawStyles.length; i < len; ++i) {
+      cssText += (cssText ? '\n' : '') + rawStyles[i];
+    }
+    if (cssText) {
+      this.domHelper_.insertInto(this.domHelper_.createStyle(cssText));
     }
 
     var fonts = [];
